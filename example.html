@@ -1,16 +1,29 @@
-<div class="item" dj-for="i in items">
-  <h2 dj-ref="i.name">This is the heading</h2>
-  <div dj-ref="i.content|markdown">Lorem ipsum dolor sit amet …</div>
-</div>
-
-<div dj-if="form.errors" >
-    <ul class="errorlist">
-    </ul>
-</div>
-
-
-<div dj-block="title" >
-    <div dj-ref="section.title"> 
-        <h1>{{ section.title }} </h1>
-    </div>
-</div>
+{% load static %}<html>
+ <body>
+  {% for i in items %}
+  <div class="item">
+   <h2>
+    {{ i.name }}
+   </h2>
+   <div>
+    {{ i.content|markdown }}
+   </div>
+  </div>
+  {% endfor %}
+  {% if form.errors %}
+  <div>
+   <ul class="errorlist">
+   </ul>
+  </div>
+  {% endif %}
+  {% block title %}
+  <div>
+   <div>
+    <h1>
+     {{ section.title }}
+    </h1>
+   </div>
+  </div>
+  {% endblock %}
+ </body>
+</html>
